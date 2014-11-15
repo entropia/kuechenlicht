@@ -141,6 +141,7 @@ start:
 			}
 
 			if(cnt) {
+				limit += limit / 2;
 				delay_ticks(1000);
 				goto start;
 			}
