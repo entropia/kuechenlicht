@@ -90,7 +90,7 @@ void main(void) {
 
 	while(1) {
 wait:
-		limit = 5;
+		limit = 10;
 		while(!get_switch())
 			;
 
@@ -98,13 +98,16 @@ wait:
 		delay_ticks(RELEASE_TIME);
 
 start:
+		if(limit > 120)
+			limit = 120;
+
 		for(uint32_t i = 0; i < limit * 60 * 100; i++) {
 			uint32_t cnt = 0;
 			while(get_switch()) {
 				cnt++;
 
 				if(cnt > 300) {
-					limit = 20;
+					limit = 60;
 					strobe();
 
 					delay_ticks(2*RELEASE_TIME);
@@ -130,7 +133,7 @@ start:
 				cnt++;
 
 				if(cnt > 300) {
-					limit = 20;
+					limit = 60;
 					strobe();
 
 					delay_ticks(2*RELEASE_TIME);
